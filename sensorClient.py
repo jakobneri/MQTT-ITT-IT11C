@@ -1,6 +1,5 @@
 import time
 import random
-import json
 import paho.mqtt.client as mqtt
 
 class SensorClient:
@@ -49,7 +48,6 @@ class SensorClient:
 
     def statusInfo(self):
         """generiert einen String für eine Statusmeldung"""
-        # Format: room:temp:humid:templimit:humiditylimit
         return f"{self.room}:{self.temp}:{self.humidity}:{self.templimit}:{self.humiditylimit}"
 
     def run(self):
@@ -75,7 +73,7 @@ class SensorClient:
             self.client.loop_stop()
             self.client.disconnect()
 
-    def messageReceived(self, client, userdata, message):
+    def messageReceived(self, message):
         """Mqtt Message wurde erhalten"""
         print(f"Nachricht empfangen: {message.payload.decode()} auf Topic {message.topic}")
 
