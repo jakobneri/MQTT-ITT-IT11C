@@ -62,7 +62,7 @@ class SensorClient:
             while True:
                 self.readDataFromSensor()
                 message = self.statusInfo()
-                topic = f"home/{self.room}/status"
+                topic = "sensorclient/data"
                 
                 self.client.publish(topic, message)
                 print(f"Gesendet: {message} an {topic}")
